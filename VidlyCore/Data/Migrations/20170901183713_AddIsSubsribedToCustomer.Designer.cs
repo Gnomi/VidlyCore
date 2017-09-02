@@ -11,9 +11,10 @@ using VidlyCore.Data;
 namespace VidlyCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170901183713_AddIsSubsribedToCustomer")]
+    partial class AddIsSubsribedToCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,32 +187,11 @@ namespace VidlyCore.Data.Migrations
 
                     b.Property<bool>("IsSubscribedToNewsletter");
 
-                    b.Property<byte>("MembershipTypeId");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MembershipTypeId");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("VidlyCore.Models.MembershipType", b =>
-                {
-                    b.Property<byte>("Id");
-
-                    b.Property<byte>("DiscountRate");
-
-                    b.Property<byte>("DurationInMonths");
-
-                    b.Property<short>("SignUpFee");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MembershipTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -256,14 +236,6 @@ namespace VidlyCore.Data.Migrations
                     b.HasOne("VidlyCore.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("VidlyCore.Models.Customer", b =>
-                {
-                    b.HasOne("VidlyCore.Models.MembershipType", "MembershipType")
-                        .WithMany()
-                        .HasForeignKey("MembershipTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

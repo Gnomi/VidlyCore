@@ -11,9 +11,10 @@ using VidlyCore.Data;
 namespace VidlyCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170901184744_PopulateMembershipType")]
+    partial class PopulateMembershipType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,9 +189,7 @@ namespace VidlyCore.Data.Migrations
 
                     b.Property<byte>("MembershipTypeId");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
@@ -211,7 +210,7 @@ namespace VidlyCore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MembershipTypes");
+                    b.ToTable("MembershipType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -11,9 +11,10 @@ using VidlyCore.Data;
 namespace VidlyCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170904194254_AddBirthdateToCustomer")]
+    partial class AddBirthdateToCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,7 +185,7 @@ namespace VidlyCore.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("Birthdate");
+                    b.Property<DateTime>("Birthdaydate");
 
                     b.Property<bool>("IsSubscribedToNewsletter");
 
@@ -209,8 +210,7 @@ namespace VidlyCore.Data.Migrations
 
                     b.Property<byte>("DurationInMonths");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.Property<short>("SignUpFee");
 

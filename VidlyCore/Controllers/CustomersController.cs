@@ -30,29 +30,12 @@ namespace VidlyCore.Controllers
 
             var customers = _context.Customers
                 .Include(c => c.MembershipType).ToList();
-            
-
-    //        IQueryable<Customer> c = _context.Customers
-    //.Include(cus => cus.MembershipType)
-    //    .ThenInclude(d => d.DiscountRate);
-        
-
-
-
-            //foreach (Customer c in customers)
-            //{
-            //    _context.Entry(c).Collection(d => d.MembershipType)
-            //        .Query().Where( e => e.MembershipTypeId = )
-            //}
-            //              .Include(c => c.MembershipType).Load();
-            //  .ThenInclude(m => m.DiscountRate)
-            //              .ToList();
             return View(customers);
         }
 
         public IActionResult Details(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(m=>m.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return NotFound();

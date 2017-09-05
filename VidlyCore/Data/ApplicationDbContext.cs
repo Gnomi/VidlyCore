@@ -11,7 +11,10 @@ namespace VidlyCore.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Customer> Customers { get; set; }
-        //public DbSet<MembershipType> MembershipTypes { get; set;  }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<MembershipType> MembershipTypes { get; set;  }
+        public DbSet<Genre> Genres { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -22,7 +25,11 @@ namespace VidlyCore.Data
             base.OnModelCreating(builder);
 
             //this needed to be add in order to load membership type in Customer.MembershipType
-            builder.Entity<MembershipType>().ToTable("MembershipTypes");
+        //    builder.Entity<MembershipType>().ToTable("MembershipTypes");
+           // builder.Entity<Genre>().ToTable("Genres");
+
+
+
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

@@ -12,7 +12,7 @@ namespace VidlyCore.Controllers
         private ApplicationDbContext _context;
 
         //ctor for shortcut
-        public CustomersController( ApplicationDbContext context)
+        public CustomersController(ApplicationDbContext context)
         {
             _context = context;
         }

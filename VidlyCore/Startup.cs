@@ -37,6 +37,26 @@ namespace VidlyCore
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            //this is DI method
+            ////https://dotnetthoughts.net/using-automapper-in-aspnet-core-project/
+            ////https://stackoverflow.com/questions/42916182/trying-to-add-automapper-to-netcore1-1-not-recognising-services-addautomapper
+            //var config = new AutoMapper.MapperConfiguration(cfg =>
+            //{
+            //    cfg.AddProfile(new MappingProfile());
+            //});
+            //var mapper = config.CreateMapper();
+            //services.AddSingleton(mapper);
+
+
+
+            //static method
+            //https://stackoverflow.com/questions/41284349/automapper-error-saying-mapper-not-initialized
+            AutoMapper.Mapper.Initialize(c=>c.AddProfile<MappingProfile>());
+//            services.AddAutoMapper();//This is the line you add.
+            
+            // services.AddAutoMapper(typeof(Startup));  // <-- newer automapper version uses this signature.
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +82,8 @@ namespace VidlyCore
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+//                routes.MapSpaFallbackRoute("DefaultAPI", "api/{controller}/{id?}");
             });
         }
     }
